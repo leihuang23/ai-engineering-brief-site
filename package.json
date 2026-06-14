@@ -14,6 +14,7 @@
     "build": "astro build",
     "preview": "astro preview --host 127.0.0.1",
     "publish:brief": "node scripts/publish-brief.mjs",
+    "deploy:project": "wrangler pages project create ai-engineering-brief-site --production-branch main",
     "deploy": "wrangler pages deploy dist --project-name ai-engineering-brief-site",
     "lighthouse": "node scripts/run-lighthouse.mjs"
   },

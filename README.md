@@ -29,6 +29,8 @@ Run Lighthouse CI after a build:
 npm run lighthouse
 ```
 
+If the machine does not have Chrome on `PATH`, set `CHROME_PATH` to a Chromium or Chrome executable.
+
 ## Publishing From Hermes
 
 Hermes should gather the brief content first, then pass JSON into the publishing script.
@@ -104,12 +106,19 @@ gh repo create ai-engineering-brief-site --public --source=. --remote=origin --p
 Deploy with Wrangler:
 
 ```bash
+npm run deploy:project
 npm run build
 npm run deploy
 ```
 
-Add the custom domain after the Pages project exists:
+Wrangler 4.100 deploys Pages projects but does not expose a custom-domain subcommand. Add the custom domain from the Cloudflare dashboard, or call the Pages domains API with a token that can manage Pages and DNS:
 
 ```bash
-npx wrangler pages domain add news.leihuang.me --project-name ai-engineering-brief-site
+curl --request POST \
+  "https://api.cloudflare.com/client/v4/accounts/<ACCOUNT_ID>/pages/projects/ai-engineering-brief-site/domains" \
+  --header "Authorization: Bearer <CLOUDFLARE_API_TOKEN>" \
+  --header "Content-Type: application/json" \
+  --data '{"name":"news.leihuang.me"}'
 ```
+
+The custom domain for this project has been requested as `news.leihuang.me`; Cloudflare may keep it in `pending` while DNS and certificate validation complete.
