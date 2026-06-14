@@ -214,7 +214,7 @@ async function main() {
 
   const brief = normalizePayload(await loadPayload());
   const { id, filePath } = await writeBrief(brief);
-  const siteUrl = (process.env.SITE_URL || 'https://news.leihuang.me').replace(/\/$/, '');
+  const siteUrl = (process.env.SITE_URL || 'https://ai-news.leihuang.me').replace(/\/$/, '');
   const articleUrl = `${siteUrl}/briefs/${id}/`;
 
   if (!hasFlag('--skip-build')) await run('npm', ['run', 'build']);

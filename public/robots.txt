@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://news.leihuang.me/sitemap-index.xml
+Sitemap: https://ai-news.leihuang.me/sitemap-index.xml

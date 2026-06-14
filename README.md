@@ -77,7 +77,7 @@ npm run publish:brief -- --input ./brief.json --git
 Copy `.env.example` to `.env` for local testing or set these in Hermes:
 
 ```bash
-SITE_URL=https://news.leihuang.me
+SITE_URL=https://ai-news.leihuang.me
 TELEGRAM_BOT_TOKEN=...
 TELEGRAM_CHAT_ID=...
 CLOUDFLARE_ACCOUNT_ID=...
@@ -118,7 +118,7 @@ curl --request POST \
   "https://api.cloudflare.com/client/v4/accounts/<ACCOUNT_ID>/pages/projects/ai-engineering-brief-site/domains" \
   --header "Authorization: Bearer <CLOUDFLARE_API_TOKEN>" \
   --header "Content-Type: application/json" \
-  --data '{"name":"news.leihuang.me"}'
+  --data '{"name":"ai-news.leihuang.me"}'
 ```
 
-The custom domain for this project has been requested as `news.leihuang.me`; Cloudflare may keep it in `pending` while DNS and certificate validation complete.
+The custom domain for this project is `ai-news.leihuang.me`; Cloudflare may keep it in `pending` while DNS and certificate validation complete.

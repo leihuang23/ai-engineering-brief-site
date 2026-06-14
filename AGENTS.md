@@ -14,4 +14,4 @@ This repository is a static Astro site for the AI Engineering Brief.
 
 - Build output is `dist`.
 - Cloudflare Pages project name is `ai-engineering-brief-site`.
-- Production domain is `news.leihuang.me`.
+- Production domain is `ai-news.leihuang.me`.
