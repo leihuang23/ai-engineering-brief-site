@@ -1,0 +1,34 @@
+---
+import BriefCard from '../components/BriefCard.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getBriefs, PAGE_SIZE } from '../lib/briefs';
+
+const briefs = await getBriefs();
+const pageBriefs = briefs.slice(0, PAGE_SIZE);
+const totalPages = Math.max(1, Math.ceil(briefs.length / PAGE_SIZE));
+---
+
+<BaseLayout>
+  <section class="intro">
+    <p class="kicker">Twice-weekly field notes</p>
+    <h1>AI Engineering Brief</h1>
+    <p>
+      Practical notes on agents, RAG, MCP, model operations, and the engineering
+      patterns that make AI systems durable.
+    </p>
+  </section>
+
+  <section class="list" aria-labelledby="latest-briefs">
+    <h2 id="latest-briefs">Latest Briefs</h2>
+    {pageBriefs.map((brief) => <BriefCard brief={brief} />)}
+  </section>
+
+  {
+    totalPages > 1 && (
+      <nav class="pagination" aria-label="Brief pages">
+        <span aria-current="page">1</span>
+        <a href="/page/2/">Next</a>
+      </nav>
+    )
+  }
+</BaseLayout>

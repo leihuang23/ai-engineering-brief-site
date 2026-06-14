@@ -1,0 +1,46 @@
+---
+import BriefCard from '../../components/BriefCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getBriefs, PAGE_SIZE } from '../../lib/briefs';
+
+export async function getStaticPaths() {
+  const briefs = await getBriefs();
+  const totalPages = Math.ceil(briefs.length / PAGE_SIZE);
+
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => {
+    const pageNumber = index + 2;
+    const start = (pageNumber - 1) * PAGE_SIZE;
+
+    return {
+      params: { page: String(pageNumber) },
+      props: {
+        pageNumber,
+        totalPages,
+        briefs: briefs.slice(start, start + PAGE_SIZE),
+      },
+    };
+  });
+}
+
+const { pageNumber, totalPages, briefs } = Astro.props;
+const previousHref = pageNumber === 2 ? '/' : `/page/${pageNumber - 1}/`;
+const nextHref = pageNumber < totalPages ? `/page/${pageNumber + 1}/` : undefined;
+---
+
+<BaseLayout title={`AI Engineering Brief - Page ${pageNumber}`}>
+  <section class="intro compact">
+    <p class="kicker">Archive</p>
+    <h1>Briefs, Page {pageNumber}</h1>
+  </section>
+
+  <section class="list" aria-labelledby="brief-archive">
+    <h2 id="brief-archive">Archive</h2>
+    {briefs.map((brief) => <BriefCard brief={brief} />)}
+  </section>
+
+  <nav class="pagination" aria-label="Brief pages">
+    <a href={previousHref}>Previous</a>
+    <span aria-current="page">{pageNumber}</span>
+    {nextHref && <a href={nextHref}>Next</a>}
+  </nav>
+</BaseLayout>

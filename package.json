@@ -1,0 +1,32 @@
+{
+  "name": "ai-engineering-brief-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "overrides": {
+    "esbuild": "0.28.1"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1",
+    "publish:brief": "node scripts/publish-brief.mjs",
+    "deploy": "wrangler pages deploy dist --project-name ai-engineering-brief-site",
+    "lighthouse": "node scripts/run-lighthouse.mjs"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^6.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^6.4.6"
+  },
+  "devDependencies": {
+    "chrome-launcher": "^1.2.1",
+    "lighthouse": "^13.4.0",
+    "typescript": "^5.8.3",
+    "wrangler": "^4.100.0"
+  }
+}

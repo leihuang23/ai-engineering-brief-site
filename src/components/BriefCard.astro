@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '../lib/briefs';
+
+interface Props {
+  brief: CollectionEntry<'briefs'>;
+}
+
+const { brief } = Astro.props;
+const href = `/briefs/${brief.id}/`;
+---
+
+<article class="brief-card">
+  <p class="meta">
+    <time datetime={brief.data.date.toISOString()}>{formatDate(brief.data.date)}</time>
+    <span>{brief.data.cadence}</span>
+  </p>
+  <h2><a href={href}>{brief.data.title}</a></h2>
+  <p>{brief.data.summary}</p>
+</article>

@@ -1,0 +1,49 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { formatDate } from '../../lib/briefs';
+
+export async function getStaticPaths() {
+  const briefs = await getCollection('briefs');
+
+  return briefs.map((brief) => ({
+    params: { slug: brief.id },
+    props: { brief },
+  }));
+}
+
+const { brief } = Astro.props;
+const { Content } = await render(brief);
+---
+
+<BaseLayout title={`${brief.data.title} | AI Engineering Brief`} description={brief.data.summary}>
+  <article class="article">
+    <header class="article-header">
+      <p class="meta">
+        <time datetime={brief.data.date.toISOString()}>{formatDate(brief.data.date)}</time>
+        <span>{brief.data.cadence}</span>
+      </p>
+      <h1>{brief.data.title}</h1>
+      <p>{brief.data.summary}</p>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+
+    {
+      brief.data.sources.length > 0 && (
+        <section class="sources" aria-labelledby="sources-title">
+          <h2 id="sources-title">Sources</h2>
+          <ul>
+            {brief.data.sources.map((source) => (
+              <li>
+                <a href={source.url} rel="noreferrer">{source.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>

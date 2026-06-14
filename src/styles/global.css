@@ -1,0 +1,318 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f7f5ef;
+  --surface: #fffdf8;
+  --text: #191815;
+  --muted: #676056;
+  --line: #ddd5c8;
+  --accent: #176b87;
+  --accent-strong: #0d4f63;
+  --shadow: 0 18px 48px rgb(38 30 18 / 10%);
+  --measure: 44rem;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 18px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111416;
+    --surface: #171c1f;
+    --text: #f3efe6;
+    --muted: #b3aa9d;
+    --line: #30383b;
+    --accent: #6bbbd0;
+    --accent-strong: #9dddec;
+    --shadow: 0 18px 48px rgb(0 0 0 / 22%);
+  }
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f7f5ef;
+  --surface: #fffdf8;
+  --text: #191815;
+  --muted: #676056;
+  --line: #ddd5c8;
+  --accent: #176b87;
+  --accent-strong: #0d4f63;
+  --shadow: 0 18px 48px rgb(38 30 18 / 10%);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111416;
+  --surface: #171c1f;
+  --text: #f3efe6;
+  --muted: #b3aa9d;
+  --line: #30383b;
+  --accent: #6bbbd0;
+  --accent-strong: #9dddec;
+  --shadow: 0 18px 48px rgb(0 0 0 / 22%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    linear-gradient(180deg, rgb(23 107 135 / 8%), transparent 18rem),
+    var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background-image:
+    linear-gradient(rgb(127 120 108 / 8%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(127 120 108 / 8%) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(180deg, #000, transparent 50%);
+}
+
+a {
+  color: var(--accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+.site-header,
+.site-footer,
+main {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.brand {
+  color: var(--text);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.theme-toggle {
+  display: inline-grid;
+  width: 2.4rem;
+  height: 2.4rem;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+}
+
+.intro {
+  max-width: 52rem;
+  padding: clamp(3rem, 8vw, 7rem) 0 clamp(2rem, 6vw, 4rem);
+}
+
+.intro.compact {
+  padding-bottom: 1.5rem;
+}
+
+.kicker,
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.8rem;
+  margin: 0 0 0.8rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.intro h1,
+.article-header h1 {
+  max-width: 14ch;
+  margin: 0;
+  font-size: 5.2rem;
+  line-height: 0.95;
+}
+
+.intro p:last-child,
+.article-header p:last-child {
+  max-width: var(--measure);
+  margin: 1.2rem 0 0;
+  color: var(--muted);
+  font-size: 1.22rem;
+}
+
+.list {
+  display: grid;
+  gap: 1rem;
+  max-width: 56rem;
+  padding-bottom: 2rem;
+}
+
+.list > h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+.brief-card {
+  padding: 1.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  box-shadow: var(--shadow);
+}
+
+.brief-card h2 {
+  margin: 0;
+  font-size: 1.85rem;
+  line-height: 1.15;
+}
+
+.brief-card h2 a {
+  color: var(--text);
+}
+
+.brief-card p:last-child {
+  max-width: var(--measure);
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+}
+
+.pagination {
+  display: flex;
+  gap: 0.7rem;
+  align-items: center;
+  padding: 1rem 0 4rem;
+}
+
+.pagination a,
+.pagination span {
+  min-width: 2.5rem;
+  padding: 0.45rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.pagination span {
+  color: var(--muted);
+}
+
+.article {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 5rem 0;
+}
+
+.article-header {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.article-header h1 {
+  max-width: 16ch;
+  font-size: 4.2rem;
+}
+
+.prose {
+  padding-top: 1.5rem;
+}
+
+.prose :where(h2, h3) {
+  margin: 2rem 0 0.5rem;
+  line-height: 1.2;
+}
+
+.prose :where(p, li) {
+  color: color-mix(in srgb, var(--text) 88%, var(--muted));
+}
+
+.prose :where(img, video) {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.sources {
+  margin-top: 2.5rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+
+.sources h2 {
+  font-size: 1rem;
+}
+
+.sources ul {
+  padding-left: 1.1rem;
+}
+
+.site-footer {
+  padding: 1.5rem 0 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 42rem) {
+  :root {
+    font-size: 16px;
+  }
+
+  .site-header,
+  .site-footer,
+  main {
+    width: min(100% - 1.25rem, 72rem);
+  }
+
+  .intro {
+    padding: 3rem 0 2rem;
+  }
+
+  .intro h1,
+  .article-header h1 {
+    font-size: 2.9rem;
+  }
+
+  .intro p:last-child,
+  .article-header p:last-child {
+    font-size: 1.08rem;
+  }
+
+  .brief-card {
+    padding: 1.15rem;
+  }
+
+  .brief-card h2 {
+    font-size: 1.35rem;
+  }
+
+  .article {
+    padding: 2rem 0;
+  }
+}

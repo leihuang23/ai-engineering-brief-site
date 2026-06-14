@@ -1,0 +1,21 @@
+---
+title: "AI Engineering Brief: Sample Edition"
+summary: "A placeholder edition that verifies the Astro content pipeline, pagination, article routes, and Telegram link generation before Hermes publishes live briefs."
+date: 2026-06-14
+cadence: "Sunday"
+sources:
+  - title: "Astro"
+    url: "https://astro.build"
+---
+
+This sample brief exists so the site can build, render, and pass smoke checks before the first Hermes cron job publishes a real edition.
+
+## Signals
+
+- Static content is generated from MDX.
+- Article list pages show titles and summaries.
+- Article pages include metadata and source links.
+
+## Engineering Takeaway
+
+The publishing path should stay boring: gather the brief, write one MDX file, build Astro, deploy the `dist` directory, and send Telegram a short HTML-formatted summary with the article URL.
